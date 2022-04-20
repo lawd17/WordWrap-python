@@ -3,16 +3,16 @@ from unittest import TestCase
 
 from src.Wrapper import wrap
 """ TODO
-"" ó null, n -> "" -
-"hola", -3 -> error -
+"" ó null, n -> "" - ok
+"hello", -3 -> error - ok
 
-hola, 5 -> "hola" -
-hola, 2 -> "ho\nla -
-hola, 3 -> "hol\na -
+hello, 5 -> "hello" - ok
+hello, 2 -> "he\nll\no -
+hello, 3 -> "hel\nlo -
 
-hola mundo, 7 -> "hola\nmundo" -
-hola mundo, 4 -> "hola\nmundo" -
-hola mundo, 2 -> "ho\nla\nmu\nnd\no" -
+hello world, 8 -> "hello\nworld" -
+hello world, 5 -> "hello\n world" -
+hello world, 2 -> "he\nll\no\nwo\nrl\nd" -
 """
 
 
@@ -26,4 +26,11 @@ class TestIsNarcissisticNumber(TestCase):
             wrap("hello", -3)
 
     def test_return_same_line_width_high_column(self):
-        assert_that(wrap("hello", 6)).is_equal_to("hello")
+        assert_that(wrap("hello", 5)).is_equal_to("hello")
+
+    def test_return_wrap_line(self):
+        assert_that(wrap("hello", 2)).is_equal_to("he\nll\no")
+        assert_that(wrap("hello", 3)).is_equal_to("hel\nlo")
+
+
+
