@@ -12,7 +12,7 @@ hello, 3 -> "hel\nlo -
 
 hello world, 8 -> "hello\nworld" -
 hello world, 5 -> "hello\n world" -
-hello world, 2 -> "he\nll\no\nwo\nrl\nd" -
+hello world, 3 -> "hel\nlo\n wo\nrld" -
 """
 
 
@@ -31,6 +31,13 @@ class TestIsNarcissisticNumber(TestCase):
     def test_return_wrap_line(self):
         assert_that(wrap("hello", 2)).is_equal_to("he\nll\no")
         assert_that(wrap("hello", 3)).is_equal_to("hel\nlo")
+
+    def test_return_wrap_line_when_line_have_space(self):
+        assert_that(wrap("hello world", 8)).is_equal_to("hello\n world")
+        assert_that(wrap("hello world", 5)).is_equal_to("hello\n worl\nd")
+        assert_that(wrap("hello world", 3)).is_equal_to("hel\nlo\n wo\nrld")
+
+
 
 
 
